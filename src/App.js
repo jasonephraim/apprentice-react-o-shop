@@ -1,13 +1,12 @@
+import React from 'react';
+import './App.css';
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        
-        <p>
+    <div className="App">    
+        <h1>
           React-o-shop
-        </p>
-        
-      </header>
+        </h1>
     </div>
   );
 }
