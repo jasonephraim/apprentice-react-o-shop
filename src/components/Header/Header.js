@@ -4,7 +4,6 @@ const Header = () => {
     
   
     return (
-      <header>
         <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
           <div
             className="navbar-brand"
@@ -61,7 +60,6 @@ const Header = () => {
             </form>
           </div>
         </nav>
-      </header>
     );
   };
 
