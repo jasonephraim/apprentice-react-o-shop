@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 function App() {
   return (
     <div className="App">
@@ -8,6 +9,18 @@ function App() {
         </p>
         
       </header>
+=======
+import React from 'react';
+import './App.css';
+import Header from './components/Header/Header';
+import Main from './components/Main/Main';
+
+function App() {
+  return (
+    <div className="App">    
+        <Header/>
+        <Main/>
+>>>>>>> Stashed changes
     </div>
   );
 }
