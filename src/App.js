@@ -1,12 +1,14 @@
 import React from 'react';
-import './App.css';
+
+import './styles/styles.scss';
+import Header from './components/Header/Header';
+import Main from './components/Main/Main';
 
 function App() {
   return (
     <div className="App">    
-        <h1>
-          React-o-shop
-        </h1>
+        <Header/>
+        <Main/>
     </div>
   );
 }
