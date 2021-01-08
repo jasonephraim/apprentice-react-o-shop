@@ -1,7 +1,7 @@
 import React from 'react';
 
-function Products() {
+function products() {
     return <h1>Products Works!</h1>;
 }
 
-export default Products;
+export default products;

@@ -2,12 +2,48 @@ import { useState } from "react";
 
 import history from '../../../utils/history';
 import routePaths from '../../../constants/routePaths';
-import Dropdown from '../dropdown/dropdown';
-import NavLinks from "../navLinks/navLinks";
+import pages from "../../../constants/navLinksList";
 
+const navItems = [];
+const dropdownItems = [];
+
+pages.map((page, i, type) => {
+  if (page.type === 'dropdown') {
+    dropdownItems.push(
+    
+        <div className="dropdown-item"
+            key={i}
+            id={page.type}
+            onClick={() => {
+                history.push(page.path);
+            } }
+        >
+            {page.name}
+        </div>
+    );
+    return dropdownItems;
+  } else {
+    navItems.push(
+      <li className="nav-item"
+          key={i}
+          id={page.type}
+      >
+          <div
+              className="nav-link"
+              onClick={() => {
+                  history.push(page.path);
+              } }
+          >
+              {page.name}
+          </div>
+      </li>
+    );
+    return navItems;
+  }
+});
 
 const Header = () => {
-    const [dropdown, setDropdown] = useState(false);
+    const [dropdownState, setDropdown] = useState(false);
     const toggleDropdown = (bool) => {
     setDropdown(!bool);
   };
@@ -36,19 +72,20 @@ const Header = () => {
   
           <div className="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul className="navbar-nav mr-auto">
-              { NavLinks() }
+              { navItems }
               <li className="nav-item dropdown">
                 <div
                   className="nav-link dropdown-toggle"
                   id="dropdown01"
                   onClick={() => {
-                    toggleDropdown(dropdown);
+                    toggleDropdown(dropdownState);
                   }}
                 >
                   Username
                 </div>
-                {dropdown ? Dropdown() : null}
+                {dropdownState ? <div className="dropdown-menu show" aria-labelledby="dropdown01">{ dropdownItems }</div> : null}
               </li>
+              
             </ul>
             <form className="form-inline my-2 my-lg-0">
               <input

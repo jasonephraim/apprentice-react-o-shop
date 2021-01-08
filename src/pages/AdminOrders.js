@@ -1,7 +1,7 @@
 import React from 'react';
 
-function AdminOrders() {
+function adminOrders() {
     return <h1>Admin Orders Works!</h1>;
 }
 
-export default AdminOrders;
+export default adminOrders;

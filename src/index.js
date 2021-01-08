@@ -4,8 +4,8 @@ import { Router } from 'react-router-dom';
 
 import './styles/styles.scss';
 import App from './App';
-import * as serviceWorker from './serviceworker';
 import createBrowserHistory from './utils/history';
+import * as serviceWorker from './serviceworker';
 
 ReactDOM.render(
   <Router history={createBrowserHistory}>
