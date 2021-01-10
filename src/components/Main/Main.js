@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from 'react-router';
 
-import './main.scss';
+import './Main.scss';
 import routePaths from '../../constants/routePaths';
 import home from '../../pages/Home';
 import adminOrders from '../../pages/AdminOrders';
