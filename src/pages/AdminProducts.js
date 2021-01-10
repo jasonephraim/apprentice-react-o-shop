@@ -1,7 +1,7 @@
 import React from 'react';
 
-function AdminProducts() {
+function adminProducts() {
     return <h1>AdminProducts Works!</h1>;
 }
 
-export default AdminProducts;
+export default adminProducts;

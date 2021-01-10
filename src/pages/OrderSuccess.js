@@ -1,7 +1,7 @@
 import React from 'react';
 
-function OrderSuccess() {
+function orderSuccess() {
     return <h1>Order Success Works!</h1>;
 }
 
-export default OrderSuccess;
+export default orderSuccess;
