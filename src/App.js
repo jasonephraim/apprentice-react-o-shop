@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 
+import './App.scss';
 import home from './pages/Home';
 import login from './pages/Login';
 import register from './pages/Register';
@@ -9,12 +10,12 @@ import routePaths from './constants/routePaths';
 
 function App() {
   return (
-    <div className="App">    
-        <Switch>
-          <Route path={routePaths.login} component={login} />
-          <Route path={routePaths.register} component={register} />
-          <PrivateRoute path={routePaths.home} component={home} />
-        </Switch>
+    <div className="App">
+      <Switch>
+        <Route path={routePaths.login} component={login} />
+        <Route path={routePaths.register} component={register} />
+        <PrivateRoute path={routePaths.home} component={home} />
+      </Switch>
     </div>
   );
 }

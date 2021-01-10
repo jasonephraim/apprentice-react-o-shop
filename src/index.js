@@ -1,17 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import './styles/styles.scss';
 import App from './App';
-import createBrowserHistory from './utils/history';
-import * as serviceWorker from './serviceworker';
+import { configureFakeBackend } from './utils/fakeBackend';
+import history from './utils/history';
+import store from './store/store';
+
+configureFakeBackend();
 
 ReactDOM.render(
-  <Router history={createBrowserHistory}>
-    <App />
-  </Router>,
+  <Provider store={store}>
+    <Router history={history}>
+      <App />
+    </Router>
+  </Provider>,
   document.getElementById('root')
 );
-
-/* serviceWorker.unregister(); <-- not working*/

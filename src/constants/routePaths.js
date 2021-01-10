@@ -11,4 +11,4 @@ const routePaths = {
   shoppingCart: '/shopping-cart',
 };
 
-export default routePaths
+export default routePaths;
