@@ -1,6 +1,6 @@
 const similarFields = [
   {
-    fieldName: 'userName',
+    fieldName: 'username',
     inputType: 'text',
     fieldPlaceholder: 'Username',
     invalidFeedback: 'Username is required',
@@ -13,7 +13,7 @@ const similarFields = [
   },
 ];
 
-const register = [
+const registerForm = [
   ...similarFields,
   {
     fieldName: 'firstName',
@@ -41,7 +41,7 @@ const register = [
   },
 ];
 
-const login = [
+const loginForm = [
   ...similarFields,
   {
     fieldName: 'login',
@@ -57,5 +57,5 @@ const login = [
   },
 ];
 
-export const registerFields = register;
-export const loginFields = login;
+export const registerFields = registerForm;
+export const loginFields = loginForm;
