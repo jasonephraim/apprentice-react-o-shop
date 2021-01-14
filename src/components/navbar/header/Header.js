@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import history from '../../../utils/history';
 import routePaths from '../../../constants/routePaths';
@@ -45,6 +46,14 @@ const Header = () => {
     setDropdown(!bool);
   };
 
+  const fullName = useSelector(
+    ({
+      login: {
+        user: { firstName, lastName },
+      },
+    }) => firstName + ' ' + lastName
+  );
+
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
       <div
@@ -78,7 +87,7 @@ const Header = () => {
                 toggleDropdown(dropdownState);
               }}
             >
-              Username
+              {fullName}
             </div>
             {dropdownState ? (
               <div className="dropdown-menu show" aria-labelledby="dropdown01">
