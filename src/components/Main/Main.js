@@ -9,6 +9,7 @@ import checkOut from '../../pages/CheckOut';
 import orders from '../../pages/Orders';
 import products from '../../pages/Products';
 import shoppingCart from '../../pages/ShoppingCart';
+import newProduct from '../../pages/NewProduct';
 
 function Main() {
   return (
@@ -21,6 +22,7 @@ function Main() {
           path={routePaths.adminProducts}
           component={adminProducts}
         />
+        <Route exact path={routePaths.newProduct} component={newProduct} />
         <Route exact path={routePaths.checkout} component={checkOut} />
         <Route exact path={routePaths.orders} component={orders} />
         <Route exact path={routePaths.products} component={products} />

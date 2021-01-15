@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { React, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import history from '../../../utils/history';
@@ -40,18 +40,14 @@ pages.map((page, i) => {
   }
 });
 
-const Header = () => {
+function Header() {
   const [dropdownState, setDropdown] = useState(false);
   const toggleDropdown = (bool) => {
     setDropdown(!bool);
   };
 
   const fullName = useSelector(
-    ({
-      login: {
-        user: { firstName, lastName },
-      },
-    }) => firstName + ' ' + lastName
+    (state) => state.login.user.firstName + ' ' + state.login.user.lastName
   );
 
   return (
@@ -110,6 +106,6 @@ const Header = () => {
       </div>
     </nav>
   );
-};
+}
 
 export default Header;
