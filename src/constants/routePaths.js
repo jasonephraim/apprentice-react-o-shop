@@ -2,6 +2,7 @@ const routePaths = {
   home: '/',
   adminOrders: '/admin-orders',
   adminProducts: '/admin-products',
+  newProduct: '/admin-products/new',
   checkout: '/checkout',
   login: '/login',
   orders: '/orders',

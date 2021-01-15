@@ -57,5 +57,39 @@ const loginForm = [
   },
 ];
 
+const newProductForm = [
+  {
+    fieldName: 'title',
+    inputType: 'text',
+    fieldPlaceholder: 'Title',
+    invalidFeedback: 'Product title is required',
+  },
+  {
+    fieldName: 'price',
+    inputType: 'currency',
+    fieldPlaceholder: 'Price',
+    invalidFeedback: 'Product price is required',
+  },
+  {
+    fieldName: 'category',
+    inputType: 'dropdown',
+    fieldPlaceholder: 'Category',
+    invalidFeedback: 'Product category is required',
+  },
+  {
+    fieldName: 'imageURL',
+    inputType: 'text',
+    fieldPlaceholder: 'Image URL',
+    invalidFeedback: 'Product image URL is required',
+  },
+  {
+    fieldName: 'save',
+    inputType: 'btn',
+    fieldPlaceholder: 'Save',
+    invalidFeedback: '',
+  },
+];
+
 export const registerFields = registerForm;
 export const loginFields = loginForm;
+export const newProductFields = newProductForm;

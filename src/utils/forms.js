@@ -1,35 +1,56 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { registerFields, loginFields } from '../constants/formFields';
+import {
+  registerFields,
+  loginFields,
+  newProductFields,
+} from '../constants/formFields';
+import productCategories from '../constants/productCategories';
 import routePaths from '../constants/routePaths';
 import { loginActions } from '../store/login/action';
+import { productActions } from '../store/products/action';
 import { registerActions } from '../store/register/action';
 
 function Forms(type) {
   const loginFormArray = [];
   const registerFormArray = [];
+  const newProductFormArray = [];
+  const categoriesArray = [];
 
   const [inputs, setInputs] = useState({
     firstName: '',
     lastName: '',
     username: '',
     password: '',
+    title: '',
+    price: '',
+    category: '',
+    imageURL: '',
   });
 
   const [submitted, setSubmitted] = useState(false);
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(loginActions.logout());
-  }, [dispatch]);
+  productCategories.forEach((category, i) => {
+    categoriesArray.push(
+      <option
+        name={category.categoryName}
+        id={category.categoryID}
+        key={i}
+        value={category.categoryID}
+      >
+        {category.categoryName}
+      </option>
+    );
+  });
 
-  function onChange(event) {
+  const onChange = (event) => {
     const { name, value } = event.target;
     setInputs((inputs) => ({ ...inputs, [name]: value }));
-  }
+  };
 
   registerFields.forEach((field, i) => {
     if (field.inputType === 'text') {
@@ -103,6 +124,76 @@ function Forms(type) {
     }
   });
 
+  newProductFields.forEach((field, i) => {
+    if (field.inputType === 'text') {
+      newProductFormArray.push(
+        <div className="form-group" key={i}>
+          <label htmlFor={field.fieldName}>{field.fieldPlaceholder}</label>
+          <input
+            type="text"
+            key={i}
+            name={field.fieldName}
+            value={inputs.fieldName}
+            onChange={onChange}
+            className={
+              'form-control' +
+              (submitted && !inputs[field.fieldName] ? ' is-invalid' : '')
+            }
+          />
+          {submitted && !inputs[field.fieldName] && (
+            <div className="invalid-feedback">{field.invalidFeedback}</div>
+          )}
+        </div>
+      );
+    } else if (field.inputType === 'currency') {
+      newProductFormArray.push(
+        <div className="form-group" key={i}>
+          <label htmlFor={field.fieldName}>Price</label>
+          <div className="input-group">
+            <div className="input-group-prepend">
+              <span className="input-group-text">$</span>
+            </div>
+            <input
+              type="text"
+              id={field.fieldName}
+              key={i}
+              name={field.fieldName}
+              placeholder="0.00"
+              onChange={onChange}
+              className={
+                'form-control' +
+                (submitted && !inputs[field.fieldName] ? ' is-invalid' : '')
+              }
+            />
+            {submitted && !inputs[field.fieldName] && (
+              <div className="invalid-feedback">{field.invalidFeedback}</div>
+            )}
+          </div>
+        </div>
+      );
+    } else if (field.inputType === 'btn') {
+      newProductFormArray.push(
+        <button className="btn btn-primary" key={i}>
+          {field.fieldPlaceholder}
+        </button>
+      );
+    } else {
+      newProductFormArray.push(
+        <div className="form-group" key={i}>
+          <label htmlFor={field.fieldName}>{field.fieldPlaceholder}</label>
+          <select
+            id={field.fieldName}
+            onChange={onChange}
+            name={field.fieldName}
+            className="form-control"
+          >
+            {categoriesArray}
+          </select>
+        </div>
+      );
+    }
+  });
+
   if (type === 'loginForm') {
     function onSubmit(event) {
       event.preventDefault();
@@ -123,12 +214,11 @@ function Forms(type) {
         </form>
       </div>
     );
-  } else {
+  } else if (type === 'registerForm') {
     function onSubmit(event) {
       event.preventDefault();
 
       setSubmitted(true);
-      console.log(submitted);
       if (
         inputs.firstName &&
         inputs.lastName &&
@@ -151,6 +241,31 @@ function Forms(type) {
         <h2>Register</h2>
         <form name="form" onSubmit={onSubmit}>
           {registerFormArray}
+        </form>
+      </div>
+    );
+  } else {
+    function onSubmit(event) {
+      event.preventDefault();
+
+      setSubmitted(true);
+      if (inputs.title && inputs.price && inputs.category && inputs.imageURL) {
+        dispatch(
+          productActions.addProduct([
+            inputs.title,
+            inputs.price,
+            inputs.category,
+            inputs.imageURL,
+          ])
+        );
+      }
+    }
+
+    return (
+      <div className="col-lg-4 offset-lg-4">
+        <h2>Product Form</h2>
+        <form name="form" onSubmit={onSubmit}>
+          {newProductFormArray}
         </form>
       </div>
     );
